@@ -27,7 +27,7 @@ import unicodedata
 import zipfile
 from xml.sax.saxutils import escape as _esc
 
-VERSION = "0.3.0"
+VERSION = "0.3.1"
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_DIR = os.path.dirname(HERE)
 
@@ -1467,10 +1467,11 @@ def install(home=None):
         old = os.path.join(home, rel, OLD_NAME)
         try:
             with open(os.path.join(old, "SKILL.md"), encoding="utf-8") as f:
-                if re.search(rf"(?m)^name: {OLD_NAME}$", f.read()):  # chỉ gỡ bản cũ của chính skill này
-                    _remove(old)
+                head = f.read()
         except OSError:
-            pass
+            head = ""
+        if re.search(rf"(?m)^name: {OLD_NAME}$", head):  # chỉ gỡ bản cũ của chính skill này (đóng file trước: Windows)
+            _remove(old)
         dst = os.path.join(home, rel, name)
         if os.path.realpath(dst) != os.path.realpath(SKILL_DIR):  # không tự ghi đè chính mình
             _remove(dst)

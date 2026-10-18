@@ -1,6 +1,6 @@
 {
   "name": "vn-docx",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Soạn, kiểm tra và sửa văn bản hành chính Việt Nam (.docx) đúng thể thức Nghị định 30/2020/NĐ-CP: công văn, quyết định, tờ trình, báo cáo, kế hoạch, thông báo, giấy mời, biên bản và 29 loại văn bản.",
   "author": {"name": "dinhkarate", "url": "https://github.com/dinhkarate"},
   "homepage": "https://github.com/dinhkarate/vn-docx",

@@ -1,7 +1,7 @@
 ---
 name: vn-docx
 description: Soạn, kiểm tra và sửa văn bản hành chính Việt Nam (.docx Word) đúng thể thức, kỹ thuật trình bày theo Nghị định 30/2020/NĐ-CP - công văn, quyết định, tờ trình, báo cáo, kế hoạch, thông báo, giấy mời, giấy giới thiệu, biên bản, công điện và đủ 29 loại văn bản hành chính, cập nhật mô hình chính quyền 2 cấp. Dùng khi người dùng muốn soạn/viết/làm một văn bản hành chính, công văn, quyết định, tờ trình..., trình bày lại hoặc chuẩn hóa văn bản "theo Nghị định 30", "đúng thể thức", "chuẩn NĐ30", kiểm tra/rà soát/chấm lỗi thể thức một file Word, hoặc học, dạy cách trình bày văn bản hành chính. Also for Vietnamese government/administrative document drafting and format checking (Decree 30/2020).
-version: 0.3.0
+version: 0.3.1
 tags: [vietnamese, nghi-dinh-30, van-ban-hanh-chinh, docx, word, government-documents]
 ---
 

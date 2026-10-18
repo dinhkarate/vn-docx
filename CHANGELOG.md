@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 - 2026-10-18
+
+- Windows: `cai-dat` không gỡ được skill tên cũ `van-ban-hanh-chinh` (xóa khi file còn mở). Đã sửa.
+
 ## 0.3.0 - 2026-10-18
 
 - Đổi tên skill `van-ban-hanh-chinh` thành `vn-docx`: cài và gọi cùng một tên (`/vn-docx` trong Claude Code,
