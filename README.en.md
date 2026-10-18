@@ -30,12 +30,12 @@ AI agents asked to "install vn-docx": run `npx -y vn-docx install`, then tell th
 
 ```text
 /plugin marketplace add dinhkarate/vn-docx     # Claude Code plugin
-/plugin install van-ban-hanh-chinh@vn-docx
+/plugin install vn-docx@vn-docx
 ```
 
 Claude Cowork / claude.ai: enable *Settings > Capabilities > Code execution and file creation*, then add the
 marketplace `dinhkarate/vn-docx` under *Customize > Plugins*, or upload
-[`van-ban-hanh-chinh.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/van-ban-hanh-chinh.zip)
+[`vn-docx.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/vn-docx.zip)
 under *Customize > Skills*. Details (in Vietnamese): [docs/cai-dat.md](docs/cai-dat.md).
 
 Command line without an agent:

@@ -13,7 +13,7 @@ import zipfile
 from contextlib import redirect_stdout
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL = os.path.join(ROOT, "skills", "van-ban-hanh-chinh")
+SKILL = os.path.join(ROOT, "skills", "vn-docx")
 sys.path.insert(0, os.path.join(SKILL, "scripts"))
 
 import vanban  # noqa: E402
@@ -241,14 +241,21 @@ class Cli(TmpDir):
 
     def test_cai_dat(self):
         home = os.path.join(self.tmp, "home")
-        claude = os.path.join(home, ".claude", "skills", "van-ban-hanh-chinh")
-        agents = os.path.join(home, ".agents", "skills", "van-ban-hanh-chinh")
+        claude = os.path.join(home, ".claude", "skills", "vn-docx")
+        agents = os.path.join(home, ".agents", "skills", "vn-docx")
         # bản cũ: Claude Code trỏ symlink sang ~/.agents (kiểu npx skills), ~/.agents có file thừa
         os.makedirs(agents)
         open(os.path.join(agents, "cu.txt"), "w").close()
         os.makedirs(os.path.dirname(claude))
         if hasattr(os, "symlink") and os.name != "nt":
             os.symlink(agents, claude)
+        # skill tên cũ của bản 0.2.0 thì gỡ; skill khác cùng thư mục thì giữ
+        old = os.path.join(home, ".claude", "skills", "van-ban-hanh-chinh")
+        other = os.path.join(home, ".claude", "skills", "khac")
+        for d, n in ((old, "van-ban-hanh-chinh"), (other, "khac")):
+            os.makedirs(d)
+            with open(os.path.join(d, "SKILL.md"), "w", encoding="utf-8") as f:
+                f.write(f"---\nname: {n}\n---\n")
         for _ in range(2):  # chạy lại là cập nhật
             done = vanban.install(home)
             self.assertEqual([p for _, p in done], [claude, agents])
@@ -258,6 +265,8 @@ class Cli(TmpDir):
                 self.assertTrue(os.path.isfile(os.path.join(d, "scripts", "vanban.py")))
                 self.assertFalse(os.path.exists(os.path.join(d, "cu.txt")))
                 self.assertFalse(os.path.exists(os.path.join(d, ".claude-plugin")))
+        self.assertFalse(os.path.exists(old))
+        self.assertTrue(os.path.isfile(os.path.join(other, "SKILL.md")))
         # chạy từ bản đã cài: không tự xóa chính mình
         r = subprocess.run([sys.executable, os.path.join(agents, "scripts", "vanban.py"), "install"],
                            capture_output=True, text=True, encoding="utf-8",
@@ -304,10 +313,10 @@ class Release(TmpDir):
         import build_zip
         with zipfile.ZipFile(build_zip.build(self.tmp)) as z:
             names = z.namelist()
-            skill = z.read("van-ban-hanh-chinh/SKILL.md").decode("utf-8")
-        self.assertTrue(all(n.startswith("van-ban-hanh-chinh/") for n in names), names)
-        self.assertIn("van-ban-hanh-chinh/scripts/vanban.py", names)
-        self.assertIn("van-ban-hanh-chinh/scripts/loi_mau.py", names)
+            skill = z.read("vn-docx/SKILL.md").decode("utf-8")
+        self.assertTrue(all(n.startswith("vn-docx/") for n in names), names)
+        self.assertIn("vn-docx/scripts/vanban.py", names)
+        self.assertIn("vn-docx/scripts/loi_mau.py", names)
         self.assertFalse([n for n in names if ".claude-plugin" in n or n.endswith(".pyc")])
         desc = re.search(r"(?m)^description: (.*)$", skill).group(1)
         self.assertEqual(desc, build_zip.SHORT)

@@ -35,19 +35,22 @@ cập nhật. Mở phiên mới của agent để dùng.
 
 ```text
 /plugin marketplace add dinhkarate/vn-docx
-/plugin install van-ban-hanh-chinh@vn-docx
+/plugin install vn-docx@vn-docx
 ```
 
 **Claude Cowork, claude.ai**: bật *Settings > Capabilities > Code execution and file creation*, rồi
 
 - *Customize > Plugins > Add > Add marketplace > Add from a repository*, nhập `dinhkarate/vn-docx`; hoặc
-- tải [`van-ban-hanh-chinh.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/van-ban-hanh-chinh.zip),
+- tải [`vn-docx.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/vn-docx.zip),
   vào *Customize > Skills > + > Upload a skill*.
 
 **Không dùng AI**: `npx vn-docx kiem-tra van-ban.docx`
 
 > Dành cho AI agent được nhờ "cài vn-docx": chạy `npx -y vn-docx install`, rồi báo người dùng mở phiên mới.
 > `npm i -g vn-docx` chỉ cài công cụ dòng lệnh, không cài skill.
+
+**Gọi skill**: mở phiên mới rồi nói việc cần làm (*"soạn công văn..."*, *"kiểm tra file này đúng Nghị định 30
+chưa"*), agent tự dùng skill. Gọi đích danh: `/vn-docx` (Claude Code), `$vn-docx` (Codex).
 
 Chi tiết từng môi trường, cài cho cả lớp, xử lý sự cố: [docs/cai-dat.md](docs/cai-dat.md).
 Cần Python 3.9+ trên máy (Cowork, claude.ai đã có sẵn). Không cần cài thư viện nào khác.
@@ -89,7 +92,7 @@ npx vn-docx loai                             # 29 loại văn bản, chữ viế
 ```
 
 File nội dung là Markdown đơn giản: khối `---` cho thông tin (cơ quan, số, người ký, nơi nhận...), mỗi dòng
-một đoạn. Xem [cú pháp](skills/van-ban-hanh-chinh/references/cu-phap.md) và [12 mẫu](skills/van-ban-hanh-chinh/examples/).
+một đoạn. Xem [cú pháp](skills/vn-docx/references/cu-phap.md) và [12 mẫu](skills/vn-docx/examples/).
 
 ```markdown
 ---
@@ -154,8 +157,8 @@ ghi rõ điều, khoản, mục của Nghị định. Hướng dẫn đóng góp
 
 - [Nghị định 30/2020/NĐ-CP](https://vanban.chinhphu.vn/default.aspx?pageid=27160&docid=199378) về công tác văn thư, Phụ lục I, II, III.
 - Công văn 4168/BNV-CQĐP năm 2025 của Bộ Nội vụ: [mẫu văn bản của UBND cấp xã](https://xaydungchinhsach.chinhphu.vn/huong-dan-cac-mau-van-ban-cua-ubnd-cap-xa-119250623155033014.htm).
-- Tóm tắt kèm trích dẫn: [the-thuc-nd30.md](skills/van-ban-hanh-chinh/references/the-thuc-nd30.md),
-  [viet-hoa.md](skills/van-ban-hanh-chinh/references/viet-hoa.md).
+- Tóm tắt kèm trích dẫn: [the-thuc-nd30.md](skills/vn-docx/references/the-thuc-nd30.md),
+  [viet-hoa.md](skills/vn-docx/references/viet-hoa.md).
 
 ## Giấy phép
 

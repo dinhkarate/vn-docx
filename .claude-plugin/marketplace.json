@@ -4,8 +4,8 @@
   "metadata": {"description": "vn-docx: soạn và kiểm tra văn bản hành chính Việt Nam theo Nghị định 30/2020/NĐ-CP"},
   "plugins": [
     {
-      "name": "van-ban-hanh-chinh",
-      "source": "./skills/van-ban-hanh-chinh",
+      "name": "vn-docx",
+      "source": "./skills/vn-docx",
       "description": "Soạn, kiểm tra và sửa văn bản hành chính (.docx) đúng thể thức Nghị định 30/2020/NĐ-CP.",
       "category": "productivity"
     }

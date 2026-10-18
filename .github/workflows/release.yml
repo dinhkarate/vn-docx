@@ -35,7 +35,7 @@ jobs:
         if: github.ref_type == 'tag'
         run: |
           gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --generate-notes
-          gh release upload "$GITHUB_REF_NAME" dist/van-ban-hanh-chinh.zip --clobber
+          gh release upload "$GITHUB_REF_NAME" dist/vn-docx.zip --clobber
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Publish unless this version is already on npm

@@ -1,6 +1,6 @@
 {
   "name": "vn-docx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Soạn và kiểm tra văn bản hành chính Việt Nam đúng thể thức Nghị định 30/2020/NĐ-CP (.docx). Agent Skill cho Claude Code, Claude Cowork, Codex, Antigravity, OpenCode và CLI không cần cài thư viện.",
   "keywords": [
     "nghi-dinh-30",

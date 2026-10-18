@@ -4,7 +4,7 @@
 > to Decree 30/2020/ND-CP (Nghị định 30/2020/NĐ-CP về công tác văn thư). Pure Python standard library, MIT license.
 
 Install the skill for Claude Code and Codex: `npx -y vn-docx install` (alias `cai-dat`; copies to ~/.claude/skills and ~/.agents/skills). Other agents: `npx skills add dinhkarate/vn-docx -g`. Claude Code plugin: `/plugin marketplace add
-dinhkarate/vn-docx` then `/plugin install van-ban-hanh-chinh@vn-docx`. CLI: `npx vn-docx kiem-tra file.docx`.
+dinhkarate/vn-docx` then `/plugin install vn-docx@vn-docx`. CLI: `npx vn-docx kiem-tra file.docx`.
 Not for legal normative documents (Decree 78/2025/ND-CP) or Communist Party documents (Guideline 05-HD/VPTW).
 
 ## Docs
@@ -17,8 +17,8 @@ Not for legal normative documents (Decree 78/2025/ND-CP) or Communist Party docu
 
 ## Skill
 
-- [SKILL.md](skills/van-ban-hanh-chinh/SKILL.md): workflows for drafting, checking, fixing, teaching
-- [Source syntax](skills/van-ban-hanh-chinh/references/cu-phap.md)
-- [Format rules with citations](skills/van-ban-hanh-chinh/references/the-thuc-nd30.md)
-- [Capitalisation rules (Appendix II)](skills/van-ban-hanh-chinh/references/viet-hoa.md)
-- [Examples](skills/van-ban-hanh-chinh/examples/)
+- [SKILL.md](skills/vn-docx/SKILL.md): workflows for drafting, checking, fixing, teaching
+- [Source syntax](skills/vn-docx/references/cu-phap.md)
+- [Format rules with citations](skills/vn-docx/references/the-thuc-nd30.md)
+- [Capitalisation rules (Appendix II)](skills/vn-docx/references/viet-hoa.md)
+- [Examples](skills/vn-docx/examples/)

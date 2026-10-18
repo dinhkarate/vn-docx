@@ -4,7 +4,7 @@
 const { spawnSync } = require("child_process");
 const path = require("path");
 
-const script = path.join(__dirname, "..", "skills", "van-ban-hanh-chinh", "scripts", "vanban.py");
+const script = path.join(__dirname, "..", "skills", "vn-docx", "scripts", "vanban.py");
 const candidates = process.env.VN_DOCX_PYTHON
   ? [process.env.VN_DOCX_PYTHON]
   : process.platform === "win32" ? ["py", "python", "python3"] : ["python3", "python"];

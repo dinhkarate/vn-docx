@@ -1,6 +1,6 @@
 # Cài đặt vn-docx
 
-Skill tên **`van-ban-hanh-chinh`**, nằm trong repo GitHub **`dinhkarate/vn-docx`**. Chọn đúng nơi bạn dùng AI:
+Skill tên **`vn-docx`**, nằm trong repo GitHub **`dinhkarate/vn-docx`**. Chọn đúng nơi bạn dùng AI:
 
 | Bạn dùng | Cách nhanh nhất |
 |---|---|
@@ -34,7 +34,7 @@ npx skills add dinhkarate/vn-docx -g
 - `-g` cài cho người dùng (mọi dự án). Bỏ `-g` để chỉ cài vào thư mục dự án đang mở.
 - Chọn agent bằng `-a`, ví dụ `-a claude-code -a codex`; `-a '*'` cho tất cả; thêm `-y` để không hỏi.
 - Skill được chép vào `~/.claude/skills/` (Claude Code) và `~/.agents/skills/` (Codex và các agent theo chuẩn Agent Skills).
-- Cập nhật: `npx skills update -g`. Gỡ: `npx skills remove van-ban-hanh-chinh -g`.
+- Cập nhật: `npx skills update -g`. Gỡ: `npx skills remove vn-docx -g`.
 
 **Nhờ chính agent cài.** Mở Claude Code hoặc Codex (bản dòng lệnh hay desktop) rồi gõ *"cài vn-docx"*. Nếu agent
 lúng túng, nói rõ hơn: *"chạy `npx -y vn-docx install` để cài skill vn-docx"*.
@@ -46,10 +46,10 @@ Lê Văn C"*.
 
 ```text
 /plugin marketplace add dinhkarate/vn-docx
-/plugin install van-ban-hanh-chinh@vn-docx
+/plugin install vn-docx@vn-docx
 ```
 
-Kiểm tra bằng `claude plugin list`; cập nhật bằng `claude plugin update van-ban-hanh-chinh@vn-docx`.
+Kiểm tra bằng `claude plugin list`; cập nhật bằng `claude plugin update vn-docx@vn-docx`.
 
 ## 2. Claude Cowork
 
@@ -59,14 +59,14 @@ Bật **Settings > Capabilities > Code execution and file creation** trước.
 
 1. **Customize > Plugins > Add > Add marketplace > Add from a repository**.
 2. Nhập `dinhkarate/vn-docx`, xác nhận.
-3. Chọn plugin **van-ban-hanh-chinh**, bấm cài.
+3. Chọn plugin **vn-docx**, bấm cài.
 
 **Cách B, tải file zip** (mọi gói có Skills):
 
-1. Tải [`van-ban-hanh-chinh.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/van-ban-hanh-chinh.zip)
+1. Tải [`vn-docx.zip`](https://github.com/dinhkarate/vn-docx/releases/latest/download/vn-docx.zip)
    (không giải nén).
 2. **Customize > Skills > + > Create skill > Upload a skill**, chọn file zip.
-3. Bật công tắc của skill **van-ban-hanh-chinh**.
+3. Bật công tắc của skill **vn-docx**.
 
 Trong Cowork, chọn thư mục làm việc rồi yêu cầu: *"Soạn tờ trình xin kinh phí số hóa tài liệu, xuất file Word"*,
 hoặc *"Kiểm tra file `cong-van.docx` có đúng Nghị định 30 không"*.
@@ -83,7 +83,7 @@ file zip. Skill chỉ thuộc tài khoản của bạn.
 ## 4. Giảng viên cài cho cả lớp
 
 - **Claude Team / Enterprise**: chủ tổ chức vào **Organization settings > Plugins & skills**, tải
-  `van-ban-hanh-chinh.zip` lên. Skill hiện trong danh sách Skills của mọi thành viên (có biểu tượng nhóm), học viên
+  `vn-docx.zip` lên. Skill hiện trong danh sách Skills của mọi thành viên (có biểu tượng nhóm), học viên
   tự bật. Enterprise: bật **Code execution and file creation** và **Skills** ở tab Policy.
 - **Học viên dùng tài khoản cá nhân** (Free, Pro): gửi link file zip và mục 2 hoặc 3 ở trên; hoặc học viên dùng
   Claude Code / Codex thì gửi một dòng `npx skills add dinhkarate/vn-docx -g`.
@@ -98,7 +98,7 @@ npx vn-docx mau cong-van > noi-dung.md     # lấy khung mẫu
 npx vn-docx tao noi-dung.md van-ban.docx   # dựng văn bản
 ```
 
-Không có Node: tải repo rồi chạy `python3 skills/van-ban-hanh-chinh/scripts/vanban.py <lệnh>`
+Không có Node: tải repo rồi chạy `python3 skills/vn-docx/scripts/vanban.py <lệnh>`
 (Windows: `py -3 ...`).
 
 ## Sự cố thường gặp
@@ -106,7 +106,7 @@ Không có Node: tải repo rồi chạy `python3 skills/van-ban-hanh-chinh/scri
 | Hiện tượng | Cách xử lý |
 |---|---|
 | `python3: command not found` (Windows) | Cài Python từ python.org, tích Add to PATH; hoặc dùng `py -3` |
-| Agent không dùng skill | Mở phiên mới; gọi thẳng `/van-ban-hanh-chinh` (Claude Code) hoặc `$van-ban-hanh-chinh` (Codex); kiểm tra thư mục skill có `SKILL.md` |
+| Agent không dùng skill | Mở phiên mới; gọi thẳng `/vn-docx` (Claude Code) hoặc `$vn-docx` (Codex); kiểm tra thư mục skill có `SKILL.md` |
 | Cowork báo không chạy được code | Bật Code execution and file creation; mở cuộc trò chuyện mới |
 | Không có file PDF | Cần LibreOffice; hoặc mở .docx bằng Word, File > Save As > PDF |
 | Kiểm tra báo lỗi phông trên file Word | Word dùng phông theme (Calibri, Aptos); chạy `sua` hoặc chọn toàn bộ văn bản, đặt Times New Roman |

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Đóng gói skill thành dist/van-ban-hanh-chinh.zip để tải lên Claude (Cowork, claude.ai: Skills > Upload).
+"""Đóng gói skill thành dist/vn-docx.zip để tải lên Claude (Cowork, claude.ai: Skills > Upload).
 
-Trong zip là thư mục van-ban-hanh-chinh/ chứa SKILL.md, scripts/, references/, examples/.
+Trong zip là thư mục vn-docx/ chứa SKILL.md, scripts/, references/, examples/.
 Trang tải skill của Claude giới hạn mô tả 200 ký tự nên SKILL.md trong zip dùng mô tả ngắn SHORT.
 """
 import os
@@ -13,7 +13,7 @@ SHORT = ("Soạn, kiểm tra, sửa văn bản hành chính (.docx) đúng thể
          "quyết định, tờ trình, báo cáo, giấy mời... Dùng khi cần văn bản chuẩn NĐ30.")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NAME = "van-ban-hanh-chinh"
+NAME = "vn-docx"
 SRC = os.path.join(ROOT, "skills", NAME)
 
 

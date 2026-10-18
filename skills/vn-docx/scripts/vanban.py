@@ -27,7 +27,7 @@ import unicodedata
 import zipfile
 from xml.sax.saxutils import escape as _esc
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_DIR = os.path.dirname(HERE)
 
@@ -1448,18 +1448,32 @@ AGENT_DIRS = [
 ]
 
 
+OLD_NAME = "van-ban-hanh-chinh"  # tên skill đến bản 0.2.0
+
+
+def _remove(path):
+    if os.path.islink(path):
+        os.unlink(path)
+    elif os.path.isdir(path):
+        shutil.rmtree(path)
+
+
 def install(home=None):
     """Chép skill vào thư mục skill của các agent; đã có thì thay bằng bản này. Trả về [(agent, đường dẫn)]."""
     home = home or os.path.expanduser("~")
     name = os.path.basename(SKILL_DIR)
     done = []
     for agent, rel in AGENT_DIRS:
+        old = os.path.join(home, rel, OLD_NAME)
+        try:
+            with open(os.path.join(old, "SKILL.md"), encoding="utf-8") as f:
+                if re.search(rf"(?m)^name: {OLD_NAME}$", f.read()):  # chỉ gỡ bản cũ của chính skill này
+                    _remove(old)
+        except OSError:
+            pass
         dst = os.path.join(home, rel, name)
         if os.path.realpath(dst) != os.path.realpath(SKILL_DIR):  # không tự ghi đè chính mình
-            if os.path.islink(dst):
-                os.unlink(dst)
-            elif os.path.isdir(dst):
-                shutil.rmtree(dst)
+            _remove(dst)
             shutil.copytree(SKILL_DIR, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".claude-plugin"))
         done.append((agent, dst))
     return done
@@ -1537,7 +1551,7 @@ def main(argv=None):
     p = sub.add_parser("mau", aliases=["example"], help="in nội dung mẫu của một loại văn bản")
     p.add_argument("kind")
     sub.add_parser("loai", aliases=["types"], help="bảng tên loại và chữ viết tắt (PL III)")
-    sub.add_parser("cai-dat", aliases=["install"], help="cài skill van-ban-hanh-chinh cho Claude Code, Codex và agent khác")
+    sub.add_parser("cai-dat", aliases=["install"], help="cài skill vn-docx cho Claude Code, Codex và agent khác")
     a = ap.parse_args(argv)
     if not a.cmd:
         ap.print_help()

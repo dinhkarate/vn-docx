@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2026-10-18
+
+- Đổi tên skill `van-ban-hanh-chinh` thành `vn-docx`: cài và gọi cùng một tên (`/vn-docx` trong Claude Code,
+  `$vn-docx` trong Codex). Plugin Claude Code: `/plugin install vn-docx@vn-docx`. File zip cho Cowork: `vn-docx.zip`.
+- `vn-docx cai-dat` tự gỡ skill tên cũ `van-ban-hanh-chinh` (nếu do vn-docx cài) để không bị trùng.
+
 ## 0.2.0 - 2026-10-18
 
 - `vn-docx cai-dat` (bí danh `install`): cài skill cho Claude Code (`~/.claude/skills`) và Codex, các agent khác

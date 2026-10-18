@@ -14,8 +14,8 @@ kết quả.
 | 5 | Soạn văn bản bằng AI | Viết yêu cầu, rà kết quả, chuẩn hóa văn bản thô |
 | 6 | Bài cuối khóa | Soạn bộ văn bản cho một tình huống, chấm tự động |
 
-Tài liệu nguồn cho giảng viên: [the-thuc-nd30.md](../../skills/van-ban-hanh-chinh/references/the-thuc-nd30.md)
-(bảng quy định kèm trích dẫn), [viet-hoa.md](../../skills/van-ban-hanh-chinh/references/viet-hoa.md), và toàn văn
+Tài liệu nguồn cho giảng viên: [the-thuc-nd30.md](../../skills/vn-docx/references/the-thuc-nd30.md)
+(bảng quy định kèm trích dẫn), [viet-hoa.md](../../skills/vn-docx/references/viet-hoa.md), và toàn văn
 Nghị định 30/2020/NĐ-CP (Phụ lục I, II, III).
 
 ## Bài 0. Chuẩn bị
