@@ -38,7 +38,9 @@ Nguyên tắc:
 2. Gắn thẻ `git tag v0.2.0 && git push --tags`. GitHub Actions chạy test, đăng npm (trusted publishing) và đính
    `van-ban-hanh-chinh.zip` vào GitHub Release.
 
-Lần đầu: npm chỉ cho cấu hình trusted publishing khi gói đã tồn tại, nên bản 0.1.0 đăng tay (`npm login`,
-`npm publish --access public`), rồi vào npmjs.com > vn-docx > Settings > Trusted Publisher, chọn GitHub Actions,
-repo `dinhkarate/vn-docx`, workflow `release.yml`, environment `npm`. Cuối cùng đặt biến
-`gh variable set NPM_PUBLISH --body true`: từ đó mỗi thẻ mới tự đăng npm.
+Đã cấu hình sẵn (bản 0.1.0 đăng tay, sau đó bật trusted publishing). Nếu phải làm lại, ví dụ khi chuyển repo:
+
+```bash
+npm trust github vn-docx --file release.yml --repo dinhkarate/vn-docx --env npm --allow-publish
+gh variable set NPM_PUBLISH --body true   # workflow chỉ đăng npm khi biến này là true
+```
