@@ -1,0 +1,16 @@
+name: Đề xuất mẫu văn bản / New template
+description: Thêm một loại văn bản, mẫu của ngành, địa phương
+labels: [enhancement]
+body:
+  - type: textarea
+    id: mau
+    attributes:
+      label: Loại văn bản và căn cứ
+      description: Tên loại, mẫu theo văn bản nào (NĐ 30, công văn hướng dẫn của Bộ, ngành...).
+    validations:
+      required: true
+  - type: textarea
+    id: vi-du
+    attributes:
+      label: Ví dụ
+      description: Một văn bản mẫu đã bỏ thông tin thật, hoặc link tới mẫu công khai.

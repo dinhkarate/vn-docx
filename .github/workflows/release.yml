@@ -1,0 +1,47 @@
+name: Release
+
+# Push a vX.Y.Z tag to publish that version to npm (trusted publishing, GitHub OIDC, no token)
+# and attach the Claude Cowork / claude.ai skill zip to the GitHub release.
+
+on:
+  push: { tags: ["v*"] }
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write   # npm trusted publishing + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+      - name: Tests
+        run: python -m unittest discover -s tests
+      - name: Verify tag matches package version
+        if: github.ref_type == 'tag'
+        run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
+      - name: Build skill zip
+        run: python tools/build_zip.py
+      - name: GitHub release with skill zip
+        if: github.ref_type == 'tag'
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --generate-notes
+          gh release upload "$GITHUB_REF_NAME" dist/van-ban-hanh-chinh.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Publish unless this version is already on npm
+        # bật sau lần đăng tay đầu tiên và cấu hình Trusted Publisher: repo variable NPM_PUBLISH=true
+        if: vars.NPM_PUBLISH == 'true'
+        run: |
+          v=$(node -p 'require("./package.json").version')
+          if npm view "vn-docx@$v" version >/dev/null 2>&1; then
+            echo "already published"; else npm publish --provenance --access public; fi

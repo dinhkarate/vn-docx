@@ -1,0 +1,26 @@
+name: Báo lỗi thể thức / Formatting bug
+description: Văn bản dựng ra hoặc kết quả kiểm tra chưa đúng Nghị định 30
+labels: [bug]
+body:
+  - type: textarea
+    id: mo-ta
+    attributes:
+      label: Sai ở đâu?
+      description: Thành phần nào (Quốc hiệu, số ký hiệu, nơi nhận...), đang ra sao, đúng phải là gì.
+    validations:
+      required: true
+  - type: textarea
+    id: can-cu
+    attributes:
+      label: Căn cứ
+      description: Mục nào của Phụ lục I, II, III NĐ 30/2020 hoặc văn bản hướng dẫn nào (có link càng tốt).
+  - type: textarea
+    id: tai-hien
+    attributes:
+      label: Cách tái hiện
+      description: Nội dung file noi-dung.md (bỏ thông tin nhạy cảm) hoặc lệnh đã chạy. Không đính kèm văn bản mật.
+  - type: input
+    id: phien-ban
+    attributes:
+      label: Phiên bản
+      description: Kết quả `python3 vanban.py --version`

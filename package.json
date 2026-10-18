@@ -1,0 +1,45 @@
+{
+  "name": "vn-docx",
+  "version": "0.1.0",
+  "description": "Soạn và kiểm tra văn bản hành chính Việt Nam đúng thể thức Nghị định 30/2020/NĐ-CP (.docx). Agent Skill cho Claude Code, Claude Cowork, Codex, Antigravity, OpenCode và CLI không cần cài thư viện.",
+  "keywords": [
+    "nghi-dinh-30",
+    "nd30",
+    "van-ban-hanh-chinh",
+    "the-thuc-van-ban",
+    "vietnamese",
+    "vietnam",
+    "docx",
+    "word",
+    "agent-skills",
+    "claude-code",
+    "claude",
+    "cowork",
+    "codex",
+    "government-documents",
+    "document-generation"
+  ],
+  "homepage": "https://github.com/dinhkarate/vn-docx#readme",
+  "bugs": "https://github.com/dinhkarate/vn-docx/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinhkarate/vn-docx.git"
+  },
+  "license": "MIT",
+  "author": "dinhkarate",
+  "bin": {
+    "vn-docx": "bin/vn-docx.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "!**/__pycache__/",
+    "!**/*.pyc"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests"
+  }
+}
