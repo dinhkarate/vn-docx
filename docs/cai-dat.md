@@ -4,7 +4,7 @@ Skill tên **`van-ban-hanh-chinh`**, nằm trong repo GitHub **`dinhkarate/vn-do
 
 | Bạn dùng | Cách nhanh nhất |
 |---|---|
-| Claude Code, Codex, Antigravity, OpenCode, Cursor, Gemini CLI | [Một lệnh `npx skills`](#1-một-lệnh-cho-mọi-agent) |
+| Claude Code, Codex, Antigravity, OpenCode, Cursor, Gemini CLI | [Nói "cài vn-docx", hoặc một lệnh](#1-một-lệnh-cho-mọi-agent) |
 | Claude desktop, chế độ **Cowork** | [Thêm plugin từ GitHub](#2-claude-cowork) hoặc tải file zip |
 | claude.ai trên trình duyệt | [Tải file zip lên](#3-claudeai-trên-trình-duyệt) |
 | Giảng viên cài cho cả lớp | [Cài cho tổ chức](#4-giảng-viên-cài-cho-cả-lớp) |
@@ -16,6 +16,17 @@ Yêu cầu chung: **Python 3.9 trở lên** trên máy chạy skill. macOS, Linu
 
 ## 1. Một lệnh cho mọi agent
 
+**Claude Code, Codex**: nói với agent *"cài vn-docx"*, hoặc tự chạy
+
+```bash
+npx vn-docx cai-dat        # hoặc: npx vn-docx install
+```
+
+Skill được chép vào `~/.claude/skills/` (Claude Code) và `~/.agents/skills/` (Codex). Chạy lại lệnh này để cập
+nhật bản mới.
+
+**Agent khác** (Cursor, Antigravity, OpenCode, Gemini CLI...) dùng bộ cài `npx skills`:
+
 ```bash
 npx skills add dinhkarate/vn-docx -g
 ```
@@ -25,10 +36,8 @@ npx skills add dinhkarate/vn-docx -g
 - Skill được chép vào `~/.claude/skills/` (Claude Code) và `~/.agents/skills/` (Codex và các agent theo chuẩn Agent Skills).
 - Cập nhật: `npx skills update -g`. Gỡ: `npx skills remove van-ban-hanh-chinh -g`.
 
-**Nhờ chính agent cài.** Mở Claude Code hoặc Codex (bản dòng lệnh hay desktop) rồi gõ:
-
-> Cài giúp tôi skill soạn văn bản hành chính: chạy `npx skills add dinhkarate/vn-docx -g -y`, xong thì kiểm tra
-> bằng `python3 ~/.agents/skills/van-ban-hanh-chinh/scripts/vanban.py loai`.
+**Nhờ chính agent cài.** Mở Claude Code hoặc Codex (bản dòng lệnh hay desktop) rồi gõ *"cài vn-docx"*. Nếu agent
+lúng túng, nói rõ hơn: *"chạy `npx -y vn-docx install` để cài skill vn-docx"*.
 
 Mở phiên mới để agent nạp skill. Thử: *"Soạn công văn của UBND xã An Bình mời họp giao ban tuần, người ký Chủ tịch
 Lê Văn C"*.

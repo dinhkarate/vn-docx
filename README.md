@@ -20,11 +20,16 @@ thể thức file Word có sẵn. Có bài tập "tìm lỗi" cho lớp học.
 
 ## Cài đặt
 
-**Claude Code, Codex, Cursor, Antigravity, OpenCode, Gemini CLI**: một lệnh
+**Claude Code, Codex (dòng lệnh hoặc desktop)**: nói với agent *"cài vn-docx"*, hoặc tự chạy
 
 ```bash
-npx skills add dinhkarate/vn-docx -g
+npx vn-docx cai-dat      # hoặc: npx vn-docx install
 ```
+
+Lệnh chép skill vào `~/.claude/skills` (Claude Code) và `~/.agents/skills` (Codex, các agent khác); chạy lại để
+cập nhật. Mở phiên mới của agent để dùng.
+
+**Cursor, Antigravity, OpenCode, Gemini CLI và các agent khác**: `npx skills add dinhkarate/vn-docx -g`
 
 **Claude Code (plugin)**
 
@@ -40,6 +45,9 @@ npx skills add dinhkarate/vn-docx -g
   vào *Customize > Skills > + > Upload a skill*.
 
 **Không dùng AI**: `npx vn-docx kiem-tra van-ban.docx`
+
+> Dành cho AI agent được nhờ "cài vn-docx": chạy `npx -y vn-docx install`, rồi báo người dùng mở phiên mới.
+> `npm i -g vn-docx` chỉ cài công cụ dòng lệnh, không cài skill.
 
 Chi tiết từng môi trường, cài cho cả lớp, xử lý sự cố: [docs/cai-dat.md](docs/cai-dat.md).
 Cần Python 3.9+ trên máy (Cowork, claude.ai đã có sẵn). Không cần cài thư viện nào khác.

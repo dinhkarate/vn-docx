@@ -21,8 +21,12 @@ rules of **Decree No. 30/2020/ND-CP on clerical work** (Nghị định 30/2020/N
 ## Install
 
 ```bash
-npx skills add dinhkarate/vn-docx -g            # Claude Code, Codex, Cursor, OpenCode, Gemini CLI...
+npx vn-docx install                             # Claude Code + Codex (~/.claude/skills, ~/.agents/skills)
+npx skills add dinhkarate/vn-docx -g            # Cursor, OpenCode, Gemini CLI and other agents
 ```
+
+AI agents asked to "install vn-docx": run `npx -y vn-docx install`, then tell the user to start a new session.
+`npm i -g vn-docx` installs only the CLI, not the skill.
 
 ```text
 /plugin marketplace add dinhkarate/vn-docx     # Claude Code plugin

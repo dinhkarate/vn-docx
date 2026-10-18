@@ -9,6 +9,7 @@ Chỉ dùng thư viện chuẩn Python 3.9+, không cần cài thêm gì.
   python3 vanban.py mau cong-van                          # in nội dung mẫu của một loại
   python3 vanban.py bai-tap dung.docx sai.docx            # cài sẵn lỗi thường gặp (bài tập cho học viên)
   python3 vanban.py loai                                  # bảng tên loại và chữ viết tắt
+  python3 vanban.py cai-dat                               # cài skill cho Claude Code, Codex... (~/.claude, ~/.agents)
 
 Cú pháp noi-dung.md: references/cu-phap.md. Quy định gốc: references/the-thuc-nd30.md.
 """
@@ -26,7 +27,7 @@ import unicodedata
 import zipfile
 from xml.sax.saxutils import escape as _esc
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_DIR = os.path.dirname(HERE)
 
@@ -1440,6 +1441,30 @@ def fix(src, dst):
 
 # ---------------------------------------------------------------- PDF (tùy chọn)
 
+# nơi các agent đọc skill của người dùng, tính từ thư mục nhà
+AGENT_DIRS = [
+    ("Claude Code", os.path.join(".claude", "skills")),
+    ("Codex và các agent theo chuẩn Agent Skills", os.path.join(".agents", "skills")),
+]
+
+
+def install(home=None):
+    """Chép skill vào thư mục skill của các agent; đã có thì thay bằng bản này. Trả về [(agent, đường dẫn)]."""
+    home = home or os.path.expanduser("~")
+    name = os.path.basename(SKILL_DIR)
+    done = []
+    for agent, rel in AGENT_DIRS:
+        dst = os.path.join(home, rel, name)
+        if os.path.realpath(dst) != os.path.realpath(SKILL_DIR):  # không tự ghi đè chính mình
+            if os.path.islink(dst):
+                os.unlink(dst)
+            elif os.path.isdir(dst):
+                shutil.rmtree(dst)
+            shutil.copytree(SKILL_DIR, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".claude-plugin"))
+        done.append((agent, dst))
+    return done
+
+
 def find_soffice():
     for c in ("soffice", "libreoffice"):
         p = shutil.which(c)
@@ -1491,9 +1516,10 @@ def cmd_example(kind):
 def main(argv=None):
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    ap = argparse.ArgumentParser(prog="vanban", description="Soạn và kiểm tra văn bản hành chính theo NĐ 30/2020/NĐ-CP")
+    ap = argparse.ArgumentParser(prog="vanban", description="Soạn và kiểm tra văn bản hành chính theo NĐ 30/2020/NĐ-CP",
+                                 epilog="Cài skill cho AI agent (Claude Code, Codex...): vn-docx cai-dat")
     ap.add_argument("--version", action="version", version=f"vn-docx {VERSION}")
-    sub = ap.add_subparsers(dest="cmd", required=True)
+    sub = ap.add_subparsers(dest="cmd")
     p = sub.add_parser("tao", aliases=["build"], help="soạn .docx từ noi-dung.md")
     p.add_argument("src")
     p.add_argument("dst")
@@ -1511,7 +1537,17 @@ def main(argv=None):
     p = sub.add_parser("mau", aliases=["example"], help="in nội dung mẫu của một loại văn bản")
     p.add_argument("kind")
     sub.add_parser("loai", aliases=["types"], help="bảng tên loại và chữ viết tắt (PL III)")
+    sub.add_parser("cai-dat", aliases=["install"], help="cài skill van-ban-hanh-chinh cho Claude Code, Codex và agent khác")
     a = ap.parse_args(argv)
+    if not a.cmd:
+        ap.print_help()
+        return 2
+    if a.cmd in ("cai-dat", "install"):
+        print(f"Đã cài skill {os.path.basename(SKILL_DIR)} {VERSION}:")
+        for agent, path in install():
+            print(f"  - {agent}: {path}")
+        print("Mở phiên mới của agent rồi thử: \"Soạn công văn của UBND xã An Bình mời họp giao ban, người ký Chủ tịch Lê Văn C\".")
+        return 0
     if a.cmd in ("tao", "build"):
         out = build(a.src, a.dst)
         print(f"Đã tạo {out}")

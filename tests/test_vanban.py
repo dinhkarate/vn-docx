@@ -239,6 +239,40 @@ class Cli(TmpDir):
         self.assertIn("loi", levels(rep, "tieu-ngu"))
         self.assertEqual(levels(rep, "kho-giay"), ["dat"])
 
+    def test_cai_dat(self):
+        home = os.path.join(self.tmp, "home")
+        claude = os.path.join(home, ".claude", "skills", "van-ban-hanh-chinh")
+        agents = os.path.join(home, ".agents", "skills", "van-ban-hanh-chinh")
+        # bản cũ: Claude Code trỏ symlink sang ~/.agents (kiểu npx skills), ~/.agents có file thừa
+        os.makedirs(agents)
+        open(os.path.join(agents, "cu.txt"), "w").close()
+        os.makedirs(os.path.dirname(claude))
+        if hasattr(os, "symlink") and os.name != "nt":
+            os.symlink(agents, claude)
+        for _ in range(2):  # chạy lại là cập nhật
+            done = vanban.install(home)
+            self.assertEqual([p for _, p in done], [claude, agents])
+            for d in (claude, agents):
+                self.assertFalse(os.path.islink(d))
+                self.assertTrue(os.path.isfile(os.path.join(d, "SKILL.md")))
+                self.assertTrue(os.path.isfile(os.path.join(d, "scripts", "vanban.py")))
+                self.assertFalse(os.path.exists(os.path.join(d, "cu.txt")))
+                self.assertFalse(os.path.exists(os.path.join(d, ".claude-plugin")))
+        # chạy từ bản đã cài: không tự xóa chính mình
+        r = subprocess.run([sys.executable, os.path.join(agents, "scripts", "vanban.py"), "install"],
+                           capture_output=True, text=True, encoding="utf-8",
+                           env={**os.environ, "HOME": home, "USERPROFILE": home, "PYTHONIOENCODING": "utf-8"})
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn(claude, r.stdout)
+        self.assertTrue(os.path.isfile(os.path.join(agents, "SKILL.md")))
+
+    def test_khong_lenh_in_huong_dan(self):
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            code = vanban.main([])
+        self.assertEqual(code, 2)
+        self.assertIn("cai-dat", buf.getvalue())
+
     def test_npm_wrapper(self):
         node = shutil.which("node")
         if not node:

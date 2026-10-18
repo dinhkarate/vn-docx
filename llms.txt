@@ -3,7 +3,7 @@
 > Open-source Agent Skill and CLI that drafts, checks and fixes Vietnamese administrative documents (.docx) according
 > to Decree 30/2020/ND-CP (Nghị định 30/2020/NĐ-CP về công tác văn thư). Pure Python standard library, MIT license.
 
-Install for AI agents: `npx skills add dinhkarate/vn-docx -g`. Claude Code plugin: `/plugin marketplace add
+Install the skill for Claude Code and Codex: `npx -y vn-docx install` (alias `cai-dat`; copies to ~/.claude/skills and ~/.agents/skills). Other agents: `npx skills add dinhkarate/vn-docx -g`. Claude Code plugin: `/plugin marketplace add
 dinhkarate/vn-docx` then `/plugin install van-ban-hanh-chinh@vn-docx`. CLI: `npx vn-docx kiem-tra file.docx`.
 Not for legal normative documents (Decree 78/2025/ND-CP) or Communist Party documents (Guideline 05-HD/VPTW).
 

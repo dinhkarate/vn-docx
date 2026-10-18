@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 - 2026-10-18
+
+- `vn-docx cai-dat` (bí danh `install`): cài skill cho Claude Code (`~/.claude/skills`) và Codex, các agent khác
+  (`~/.agents/skills`) bằng một lệnh `npx vn-docx cai-dat`; chạy lại để cập nhật. Học viên chỉ cần nói "cài vn-docx".
+- Gọi `vn-docx` không kèm lệnh: in hướng dẫn, nhắc lệnh cài skill.
+- `bai-tap`: chỉ báo những lỗi thực sự cài được vào văn bản (trước đây báo cả lỗi không áp dụng).
+- Gói zip cho Cowork dựng đúng đường dẫn khi đóng gói trên Windows.
+
 ## 0.1.0 - 2026-10-17
 
 Bản đầu tiên.
